@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create("tasks", function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('status')->default('todo');
-            $table->string('album_number');
+            $table->string("title");
+            $table->text("description")->nullable();
+            $table->string("status")->default("todo");
+            $table->string("priority")->default("medium");
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists("tasks");
     }
 };
