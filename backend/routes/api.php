@@ -4,4 +4,7 @@ use App\Http\Controllers\Api\HealthController;
 use App\Http\Controllers\Api\TaskController;
 
 Route::get("/health", HealthController::class);
-Route::apiResource("tasks", TaskController::class);
+
+Route::prefix("79016/v1")->group(function () {
+    Route::apiResource("tasks", TaskController::class);
+});
