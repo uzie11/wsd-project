@@ -14,3 +14,8 @@ Route::prefix('79016/v1')->group(function () {
     Route::get('restaurants/nearby', [RestaurantController::class, 'nearby']);
     Route::apiResource('restaurants', RestaurantController::class);
 });
+use App\Http\Controllers\Api\PhotoController;
+Route::prefix('79016/v1')->group(function () {
+    Route::apiResource('photos', PhotoController::class)
+        ->only(['index', 'store', 'show', 'destroy']);
+});
