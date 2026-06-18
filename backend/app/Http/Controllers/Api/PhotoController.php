@@ -10,9 +10,7 @@ class PhotoController extends Controller
     public function index()
     {
         $photos = Cache::remember('photos.index', 60, function () {
-            return Photo::latest()->get()->map(function ($photo) {
-                return $this->formatPhoto($photo);
-            });
+            return Photo::latest()->get()->map(function ($photo) { return $this->formatPhoto($photo); })->toArray();
         });
         return response()->json(['data' => $photos]);
     }
@@ -63,7 +61,7 @@ class PhotoController extends Controller
             'id' => $photo->id,
             'title' => $photo->title,
             'caption' => $photo->caption,
-            'image_url' => asset('storage/' . $photo->image_path),
+            'image_url' => '/storage/' . $photo->image_path,
             'original_filename' => $photo->original_filename,
             'mime_type' => $photo->mime_type,
             'file_size' => $photo->file_size,
@@ -74,3 +72,4 @@ class PhotoController extends Controller
         ];
     }
 }
+
