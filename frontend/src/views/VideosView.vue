@@ -6,7 +6,7 @@
       <div v-for="video in videos" :key="video.id"
            style="border: 1px solid #ccc; padding: 10px; border-radius: 8px; width: 220px;">
         <div style="background: #222; height: 120px; display: flex; align-items: center; justify-content: center;">
-          <span style="color: white; font-size: 40px;">▶</span>
+          <span style="color: white; font-size: 40px;">&#9654;</span>
         </div>
         <p><strong>{{ video.title }}</strong></p>
         <p style="font-size: 12px;">Genre: {{ video.genre }}</p>
@@ -16,16 +16,15 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
     return { videos: [] }
   },
   async mounted() {
-    const res = await fetch('/api/79016/v1/videos')
+    const res = await fetch("/api/videos")
     const data = await res.json()
-    this.videos = data.data
+    this.videos = data.data || data.items || data
   }
 }
 </script>
