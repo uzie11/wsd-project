@@ -13,7 +13,7 @@ class TaskController extends Controller
     public function index(): JsonResponse
     {
         $tasks = Cache::remember("tasks.index", 60, function () {
-            return Task::query()->latest()->get();
+            return Task::query()->latest()->get()->toArray();
         });
 
         return response()->json([
